@@ -1,6 +1,7 @@
 package com.example.apitest.ui.activity
 
 import OnboardingAdapter
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -49,8 +50,17 @@ class StartActivity : AppCompatActivity() {
             )
         )
 
-        loginButton.setOnClickListener { startActivity(Intent(this, Login::class.java)) }
-        signupButton.setOnClickListener { startActivity(Intent(this, Signup::class.java)) }
+        loginButton.setOnClickListener {
+            startActivity(Intent(this, Login::class.java))
+            val prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+            prefs.edit().putInt("count", 1).apply()
+
+        }
+        signupButton.setOnClickListener {
+            startActivity(Intent(this, Signup::class.java))
+            val prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+            prefs.edit().putInt("count", 1).apply()
+        }
 
         val adapter = OnboardingAdapter(onboardingPages)
         viewPager.adapter = adapter

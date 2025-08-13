@@ -21,6 +21,9 @@
         android:theme="@style/Theme.ApiTest"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.views"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.StartActivity"
             android:exported="false" />
         <activity
