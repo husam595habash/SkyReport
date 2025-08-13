@@ -2,8 +2,7 @@ package com.example.apitest.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+
 import com.airbnb.lottie.LottieAnimationView
 import com.example.apitest.R
 
