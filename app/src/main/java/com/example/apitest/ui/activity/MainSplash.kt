@@ -27,7 +27,7 @@ class MainSplash : AppCompatActivity() {
                 if (!isUserLoggedIn(this@MainSplash)) {
                     startActivity(Intent(this@MainSplash, Login::class.java))
                 } else {
-                    startActivity(Intent(this@MainSplash, views::class.java))
+                    startActivity(Intent(this@MainSplash, settings::class.java))
                 }
             }
             finish()

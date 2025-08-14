@@ -47,7 +47,7 @@ class Login : AppCompatActivity() {
             if (user != null) {
                 saveLoggedInUser(this, user)
                 Bookmark.bookmarkList = loadBookmarks(this, user.username)
-                startActivity(Intent(this, views::class.java))
+                startActivity(Intent(this, settings::class.java))
                 finish()
             } else {
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()

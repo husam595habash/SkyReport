@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.apitest.R
 import com.example.apitest.data.model.User
 import com.example.apitest.data.utils.loadUsers
 import com.example.apitest.data.utils.saveLoggedInUser
 import com.example.apitest.data.utils.saveUsers
-import kotlinx.coroutines.Dispatchers.Main
 
 class Signup : AppCompatActivity() {
 
@@ -53,7 +53,7 @@ class Signup : AppCompatActivity() {
                 users.add(newUser)
                 saveUsers(this, users)
                 saveLoggedInUser(this, newUser)
-                startActivity(Intent(this, views::class.java))
+                startActivity(Intent(this, settings::class.java))
                 finish()
             }
         }

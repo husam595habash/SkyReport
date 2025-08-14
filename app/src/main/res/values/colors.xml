@@ -3,4 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#AAAAAA</color>
+
+    <color name="background">#EAEAEA</color>
+
+    <color name="settings_card_background">#FFFFFFFF</color>
+    <color name="switch_thumb">#FFFFFF</color>
+    <color name="switch_track">#CCCCCC</color>
+    <color name="switch_color">#6200EE</color>
+    <color name="settings_text_color">#424242</color>
+    <color name="settings_primary_color">#FF000000</color>
 </resources>
