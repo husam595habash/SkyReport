@@ -12,4 +12,8 @@
     <color name="switch_color">#6200EE</color>
     <color name="settings_text_color">#424242</color>
     <color name="settings_primary_color">#FF000000</color>
+
+    <color name="startBackground">#FFFFFF</color>
+
+
 </resources>
