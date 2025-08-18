@@ -18,7 +18,7 @@ class WeatherApiServices {
         @Throws(IOException::class)
         fun fetchWeatherData(): List<hourlyWeather>? {
             val request = Request.Builder()
-                .url("https://api.tomorrow.io/v4/weather/forecast?location=42.3478,-71.0466&timesteps=1h&fields=temperature,weatherCode&apikey=d3sb69U3QENWoorvKfgni40JzJunq5lg")
+                .url("https://api.tomorrow.io/v4/weather/forecast?location=31.9038,35.2034&timesteps=1h&fields=temperature,weatherCode&apikey=d3sb69U3QENWoorvKfgni40JzJunq5lg")
                 .build()
 
             val response = client.newCall(request).execute()
