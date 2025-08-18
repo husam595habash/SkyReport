@@ -80,10 +80,33 @@ fun saveToDoList(context: Context, username: String, toDoList: ArrayList<Task>) 
     }
 }
 
+fun saveTasksList(context: Context, username: String, TasksList: ArrayList<Task>) {
+    val prefs = context.getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+    prefs.edit{
+        val gson = Gson()
+        val json = gson.toJson(TasksList)
+
+        putString("tasks_list_$username", json)
+    }
+}
+
 fun loadToDoList(context: Context, username: String): ArrayList<Task> {
     val prefs = context.getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
     val gson = Gson()
     val json = prefs.getString("to_do_list_$username", null)
+
+    return if (json != null) {
+        val type = object : TypeToken<ArrayList<Task>>() {}.type
+        gson.fromJson(json, type)
+    } else {
+        ArrayList()
+    }
+}
+
+fun loadTasksList(context: Context, username: String): ArrayList<Task> {
+    val prefs = context.getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+    val gson = Gson()
+    val json = prefs.getString("tasks_list_$username", null)
 
     return if (json != null) {
         val type = object : TypeToken<ArrayList<Task>>() {}.type
