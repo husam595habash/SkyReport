@@ -1,17 +1,151 @@
 package com.example.apitest.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import com.airbnb.lottie.LottieAnimationView
+import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.apitest.R
+import com.example.apitest.ui.fragment.NewsFragment
+import com.example.apitest.ui.fragment.SettingsFragment
+import com.example.apitest.ui.fragment.WeatherFragment
+import com.example.apitest.ui.viewmodel.NewsViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
-    lateinit var lottieLogo: LottieAnimationView
+    private lateinit var viewModel: NewsViewModel
+    private var updatingUI = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main)
 
-        lottieLogo = findViewById(R.id.splashscreen_icon_view)
+        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+        viewModel.fetchAllNews()
+
+        val latest = findViewById<com.google.android.material.radiobutton.MaterialRadioButton>(R.id.latestRadioButton)
+        val oldest = findViewById<com.google.android.material.radiobutton.MaterialRadioButton>(R.id.oldestRadioButton)
+
+        val worldBtn  = findViewById<com.google.android.material.button.MaterialButton>(R.id.generalButton)
+        val techBtn   = findViewById<com.google.android.material.button.MaterialButton>(R.id.techButton)
+        val sportsBtn = findViewById<com.google.android.material.button.MaterialButton>(R.id.sportsButton)
+        val entBtn    = findViewById<com.google.android.material.button.MaterialButton>(R.id.entertainmetnButton)
+        val healthBtn = findViewById<com.google.android.material.button.MaterialButton>(R.id.healthButton)
+
+        val btnApply = findViewById<View>(R.id.btnApply)
+        val btnReset = findViewById<View>(R.id.btnReset)
+        val btnClearAll = findViewById<View>(R.id.button)
+        val backBtn = findViewById<View>(R.id.backButton)
+
+        latest.setOnCheckedChangeListener { _, checked ->
+            if (updatingUI) return@setOnCheckedChangeListener
+            if (checked) viewModel.setSort(com.example.apitest.ui.viewmodel.SortOrder.LATEST)
+        }
+        oldest.setOnCheckedChangeListener { _, checked ->
+            if (updatingUI) return@setOnCheckedChangeListener
+            if (checked) viewModel.setSort(com.example.apitest.ui.viewmodel.SortOrder.OLDEST)
+        }
+
+        worldBtn.addOnCheckedChangeListener { _, isChecked ->
+            if (updatingUI) return@addOnCheckedChangeListener
+            viewModel.setCategoryChecked("general", isChecked)
+        }
+        techBtn.addOnCheckedChangeListener { _, isChecked ->
+            if (updatingUI) return@addOnCheckedChangeListener
+            viewModel.setCategoryChecked("tech", isChecked)
+        }
+        sportsBtn.addOnCheckedChangeListener { _, isChecked ->
+            if (updatingUI) return@addOnCheckedChangeListener
+            viewModel.setCategoryChecked("sports", isChecked)
+        }
+        entBtn.addOnCheckedChangeListener { _, isChecked ->
+            if (updatingUI) return@addOnCheckedChangeListener
+            viewModel.setCategoryChecked("entertainment", isChecked)
+        }
+        healthBtn.addOnCheckedChangeListener { _, isChecked ->
+            if (updatingUI) return@addOnCheckedChangeListener
+            viewModel.setCategoryChecked("health", isChecked)
+        }
+
+
+// APPLY / RESET / CLEAR
+        btnApply.setOnClickListener {
+            viewModel.applyFilters()
+            toggle(false)
+        }
+        val resetUi: () -> Unit = {
+            updatingUI = true
+            listOf(worldBtn, techBtn, sportsBtn, entBtn, healthBtn).forEach { it.isChecked = false }
+            latest.isChecked = true
+            oldest.isChecked = false
+            updatingUI = false
+        }
+
+        btnReset.setOnClickListener {
+            viewModel.clearFilters()
+            viewModel.applyFilters()
+            resetUi()
+        }
+        btnClearAll.setOnClickListener {
+            viewModel.clearFilters()
+            viewModel.applyFilters()
+            resetUi()
+        }
+
+        // BACK (top-left)
+        backBtn.setOnClickListener { toggle(false) }
+
+
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+
+        // Load default fragment
+        loadFragment(NewsFragment())
+
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_news -> {
+                    loadFragment(NewsFragment())
+                    true
+                }
+                R.id.navigation_weather -> {
+                    loadFragment(WeatherFragment())
+                    true
+                }
+                R.id.navigation_settings -> {
+                    loadFragment(SettingsFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+
+
     }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+    fun toggle(show: Boolean) {
+        val overlay = findViewById<View>(R.id.filterInclude)
+        val sceneRoot = findViewById<ViewGroup>(R.id.mainParent)
+
+        val transition = android.transition.Slide(Gravity.END).apply {
+            duration = 200
+            addTarget(overlay)
+        }
+        android.transition.TransitionManager.beginDelayedTransition(sceneRoot, transition)
+        overlay.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    fun toggleFilterOverlay() {
+        val isVisible = findViewById<View>(R.id.filterInclude).visibility == View.VISIBLE
+        toggle(!isVisible)
+    }
+
 }

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:text="Signup"
-        android:textColor="#2C3C93"
+        android:textColor="#1C2089"
         android:textSize="34sp"
         android:textStyle="bold" />
 
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#2C3C93"
+        android:backgroundTint="#1C2089"
         android:fontFamily="sans-serif"
         android:text="Signup"
         android:textSize="20sp"
@@ -103,7 +103,7 @@
             android:paddingHorizontal="4dp"
             android:paddingVertical="4dp"
             android:text="Login"
-            android:textColor="#2C3C93"
+            android:textColor="#1C2089"
             android:textSize="14sp"
             android:textStyle="bold" />
 

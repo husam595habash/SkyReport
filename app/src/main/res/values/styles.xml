@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Shape.App">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="Shape.App.Category">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="Shape.Pill">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="Widget.App.CategoryButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="shapeAppearance">@style/Shape.App.Category</item>
+        <item name="strokeWidth">1dp</item>
+
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">12dp</item>
+        <item name="iconSize">22dp</item>
+
+        <item name="backgroundTint">@color/category_bg_selector</item>
+        <item name="strokeColor">@color/category_stroke_selector</item>
+        <item name="android:textColor">@color/category_text_selector</item>
+        <item name="iconTint">@color/category_text_selector</item>
+
+        <item name="rippleColor">?attr/colorControlHighlight</item>
+
+        <item name="android:checkable">true</item>
+    </style>
+
+</resources>

@@ -54,6 +54,13 @@ class hourlyWeatherAdapter (private var hourly:ArrayList<hourlyWeather>) :
         return formatter.format(zonedDateTime)
     }
 
+    fun update(items: List<hourlyWeather>) {
+        hourly.clear()
+        hourly.addAll(items)
+        notifyDataSetChanged()
+    }
+
+
 
 
     override fun getItemCount(): Int = hourly.size

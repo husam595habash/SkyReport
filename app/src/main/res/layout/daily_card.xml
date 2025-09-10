@@ -50,6 +50,7 @@
         android:text="20°"
         android:textColor="#37668C"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/maxTemp"
         app:layout_constraintTop_toTopOf="parent" />

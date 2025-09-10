@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.activity.settings"
     android:clickable="true"
     android:focusable="true"
-    android:focusableInTouchMode="true">
-    >
+    android:focusableInTouchMode="true"
+    tools:context=".ui.activity.settings">
+
 
     <LinearLayout
         android:layout_width="match_parent"

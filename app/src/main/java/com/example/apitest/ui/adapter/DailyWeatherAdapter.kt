@@ -47,6 +47,12 @@ class DailyWeatherAdapter (private var daily:ArrayList<DailyWeather>) :
         holder.day.text = getDayOfWeek(day.dayOfWeek)
     }
 
+    fun update(items: List<DailyWeather>) {
+        daily.clear()
+        daily.addAll(items)
+        notifyDataSetChanged()
+    }
+
 
 
     override fun getItemCount(): Int = daily.size

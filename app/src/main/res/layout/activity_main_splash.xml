@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.activity.MainSplash">
 
     <ImageView
@@ -14,31 +14,19 @@
         android:layout_centerInParent="true"
         app:srcCompat="@drawable/logo" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/splashscreen_icon_view"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading_gray"></com.airbnb.lottie.LottieAnimationView>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="Loading..." />
-    </LinearLayout>
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="-44dp"
+        android:layout_marginEnd="149dp"
+        android:text="SkyReport"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

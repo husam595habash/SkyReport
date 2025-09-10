@@ -35,18 +35,18 @@ class StartActivity : AppCompatActivity() {
         val onboardingPages = listOf(
             OnboardingPage(
                 "Welcome to Our App!",
-                "Get ready to explore a seamless and intuitive experience designed to keep you informed and organized throughout your day.",
-                R.drawable.logo
+                "Your ultimate companion for staying informed with the latest news and weather updates",
+                R.drawable.starticon
             ),
             OnboardingPage(
-                "Stay Updated with News",
-                "Access the latest news from around the world, tailored to your interests so you never miss out on what matters most.",
-                R.drawable.img1
+                "Stay Updated with Latest News",
+                "Get breaking news, trending stories, and personalized content from trusted sources around the word, all in one place.",
+                R.drawable.news_view_pager
             ),
             OnboardingPage(
-                "Check Weather Anytime",
-                "Keep track of the weather forecast in your location and plan your day confidently with up-to-date weather information.",
-                R.drawable.img2
+                "Stay Updated with Real-Time Weather",
+                "Get accurate weather forecasts, alerts, and conditions for your location and anywhere in the world",
+                R.drawable.weather_view_pager
             )
         )
 

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Filter &amp; Sort"
+                android:textColor="@color/settings_primary_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:backgroundTint="@android:color/transparent"
+                android:fontFamily="sans-serif-black"
+                android:paddingRight="0dp"
+                android:text="Clear All"
+                android:textColor="@color/brand_primary" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/sortSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sortTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sort By"
+                android:textColor="@color/settings_primary_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/sortGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/latestRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:paddingEnd="8dp"
+                    android:text="Latest"
+                    android:textColor="@color/settings_text_color" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/oldestRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:paddingEnd="8dp"
+                    android:text="Oldest"
+                    android:textColor="@color/settings_text_color" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/categoriesTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Categories"
+                android:textColor="@color/settings_primary_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/categoriesGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:columnCount="2"
+                app:rowOrderPreserved="false">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/generalButton"
+                    style="@style/Widget.App.CategoryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="8dp"
+                    android:checkable="true"
+                    android:checked="true"
+                    android:text="General"
+                    app:icon="@drawable/world"
+                    app:layout_columnWeight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/techButton"
+                    style="@style/Widget.App.CategoryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="8dp"
+                    android:checkable="true"
+                    android:text="Technology"
+                    app:icon="@drawable/tech"
+                    app:layout_columnWeight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sportsButton"
+                    style="@style/Widget.App.CategoryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="8dp"
+                    android:checkable="true"
+                    android:text="Sports"
+                    app:icon="@drawable/sports"
+                    app:layout_columnWeight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/entertainmetnButton"
+                    style="@style/Widget.App.CategoryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="8dp"
+                    android:checkable="true"
+                    android:text="Entertainment"
+                    app:icon="@drawable/entertainment"
+                    app:layout_columnWeight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/healthButton"
+                    style="@style/Widget.App.CategoryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="8dp"
+                    android:checkable="true"
+                    android:text="Health"
+                    app:icon="@drawable/health"
+                    app:layout_columnWeight="1" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <!-- Bottom action bar -->
+            <LinearLayout
+                android:id="@+id/actionsBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReset"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Reset"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_surface"
+                    app:backgroundTint="@color/surface"
+                    app:shapeAppearanceOverlay="@style/Shape.Pill"
+                    app:strokeColor="@color/outline"
+                    app:strokeWidth="1dp" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="0dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnApply"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Apply Filters"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@color/brand_primary"
+                    app:shapeAppearanceOverlay="@style/Shape.Pill" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/gradient_background">
 
     <!-- ViewPager2 -->
     <androidx.viewpager2.widget.ViewPager2
@@ -16,43 +16,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <Button
-            android:id="@+id/loginButton"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#2C3C93"
-            android:text="Login"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Button
             android:id="@+id/signupButton"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="#B9C0E8"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#FBFBFB"
             android:text="Signup"
             android:textColor="#2C3C93"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="#2C3C93"
+            app:cornerRadius="10dp"
+            app:strokeColor="#FFFFFF"
+            app:strokeWidth="2dp" />
+
+
     </LinearLayout>
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
         app:dotsColor="#AAAAAA"
         app:dotsSize="8dp"
         app:dotsStrokeColor="@android:color/transparent"
-        app:selectedDotColor="#2C3C93" />
+        app:selectedDotColor="#FFFFFF" />
 
 </RelativeLayout>
