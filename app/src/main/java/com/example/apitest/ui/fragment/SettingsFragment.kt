@@ -318,7 +318,6 @@ class SettingsFragment : Fragment() {
         includeLayout.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    /** Bottom sheet (add section) */
     private fun toggleBottom(show: Boolean) {
         val includeLayout = view?.findViewById<View>(R.id.addSectionINclude) ?: return
         val parent = view?.findViewById<RelativeLayout>(R.id.parent) ?: return

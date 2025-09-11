@@ -34,4 +34,7 @@
     <color name="chip_unselected_bg">#FFFFFF</color>
     <color name="chip_selected_text">@color/brand_primary</color>
     <color name="chip_unselected_text">#6B7280</color>
+
+    <color name="breaking_bg">#E53935</color>
+
 </resources>

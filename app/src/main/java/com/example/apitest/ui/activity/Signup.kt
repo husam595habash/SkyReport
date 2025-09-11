@@ -53,7 +53,7 @@ class Signup : AppCompatActivity() {
                 users.add(newUser)
                 saveUsers(this, users)
                 saveLoggedInUser(this, newUser)
-                startActivity(Intent(this, settings::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }

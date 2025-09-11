@@ -65,7 +65,7 @@ fun saveUserDarkMode(context: Context, username: String, isDarkMode: Boolean) {
     prefs.edit { putBoolean("dark_mode_$username", isDarkMode) }
 }
 
-fun loadUserDarkMode(context: Context, username: String): Boolean {
+fun loadUserDarkMode(context: Context, username: String?): Boolean {
     val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
     return prefs.getBoolean("dark_mode_$username", false)
 }

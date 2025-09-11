@@ -25,10 +25,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apitest.R
 import com.example.apitest.data.model.Section
-import com.example.apitest.data.model.Task
 import com.example.apitest.data.model.User
 import com.example.apitest.data.utils.getLoggedInUser
-import com.example.apitest.data.utils.loadUserDarkMode
 import com.example.apitest.data.utils.loadUsers
 import com.example.apitest.data.utils.logoutUser
 import com.example.apitest.data.utils.saveLoggedInUser

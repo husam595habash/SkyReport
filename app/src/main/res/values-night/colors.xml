@@ -21,4 +21,6 @@
     <color name="grad_top">#244CCF</color>
     <color name="grad_bottom">#0B146B</color>
 
+    <color name="breaking_bg">#EF5350</color>
+
 </resources>

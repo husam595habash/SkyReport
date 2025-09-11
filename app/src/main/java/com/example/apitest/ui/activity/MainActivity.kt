@@ -5,14 +5,19 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.apitest.R
+import com.example.apitest.data.utils.getLoggedInUser
+import com.example.apitest.data.utils.loadUserDarkMode
 import com.example.apitest.ui.fragment.NewsFragment
 import com.example.apitest.ui.fragment.SettingsFragment
 import com.example.apitest.ui.fragment.WeatherFragment
 import com.example.apitest.ui.viewmodel.NewsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.radiobutton.MaterialRadioButton
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,17 +29,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
 
+        val username = getLoggedInUser(this)?.username
+        val isDark = loadUserDarkMode(this, username)
+
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDark) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO)
+
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
-        viewModel.fetchAllNews()
 
-        val latest = findViewById<com.google.android.material.radiobutton.MaterialRadioButton>(R.id.latestRadioButton)
-        val oldest = findViewById<com.google.android.material.radiobutton.MaterialRadioButton>(R.id.oldestRadioButton)
 
-        val worldBtn  = findViewById<com.google.android.material.button.MaterialButton>(R.id.generalButton)
-        val techBtn   = findViewById<com.google.android.material.button.MaterialButton>(R.id.techButton)
-        val sportsBtn = findViewById<com.google.android.material.button.MaterialButton>(R.id.sportsButton)
-        val entBtn    = findViewById<com.google.android.material.button.MaterialButton>(R.id.entertainmetnButton)
-        val healthBtn = findViewById<com.google.android.material.button.MaterialButton>(R.id.healthButton)
+        val latest = findViewById<MaterialRadioButton>(R.id.latestRadioButton)
+        val oldest = findViewById<MaterialRadioButton>(R.id.oldestRadioButton)
+
+        val worldBtn  = findViewById<MaterialButton>(R.id.generalButton)
+        val techBtn   = findViewById<MaterialButton>(R.id.techButton)
+        val sportsBtn = findViewById<MaterialButton>(R.id.sportsButton)
+        val entBtn    = findViewById<MaterialButton>(R.id.entertainmetnButton)
+        val healthBtn = findViewById<MaterialButton>(R.id.healthButton)
 
         val btnApply = findViewById<View>(R.id.btnApply)
         val btnReset = findViewById<View>(R.id.btnReset)
@@ -71,8 +83,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.setCategoryChecked("health", isChecked)
         }
 
-
-// APPLY / RESET / CLEAR
+        // APPLY / RESET / CLEAR
         btnApply.setOnClickListener {
             viewModel.applyFilters()
             toggle(false)
@@ -102,8 +113,6 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
-        // Load default fragment
-        loadFragment(NewsFragment())
 
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -121,6 +130,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+
+        if (savedInstanceState == null) {
+            bottomNav.selectedItemId = R.id.navigation_news
         }
 
 

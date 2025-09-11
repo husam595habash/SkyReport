@@ -1,5 +1,9 @@
 package com.example.apitest.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class News(
     val title: String,
     val description: String,
@@ -8,5 +12,6 @@ data class News(
     val url: String,
     val sourceName: String,
     val category: String,
+    val snippet: String,
     var isFavorite: Boolean = false
-)
+) : Parcelable

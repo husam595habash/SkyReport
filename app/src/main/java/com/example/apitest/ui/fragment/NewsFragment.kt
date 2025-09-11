@@ -1,6 +1,7 @@
 package com.example.apitest.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class NewsFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewsAdapter
+    private lateinit var swipe: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -30,33 +32,36 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // RecyclerView
         recyclerView = view.findViewById(R.id.RV)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = NewsAdapter(emptyList())
         recyclerView.adapter = adapter
 
-        // ViewModel shared with Activity
         viewModel = ViewModelProvider(requireActivity())[NewsViewModel::class.java]
 
         val search = view.findViewById<EditText>(R.id.searchEditText)
         search.doOnTextChanged { text, _, _, _ ->
             viewModel.setQuery(text?.toString().orEmpty())
-            viewModel.applyFilters()
         }
 
-        // Filter overlay button
+
         view.findViewById<ImageButton>(R.id.filterButton).setOnClickListener {
             (requireActivity() as? MainActivity)?.toggleFilterOverlay()
         }
 
-        // Swipe-to-refresh
-        val swipe = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
-        swipe.setOnRefreshListener { viewModel.fetchAllNews() }
+        swipe = view.findViewById(R.id.swipeRefresh)
+        swipe.setOnRefreshListener {
+            viewModel.fetchNews {}
+        }
 
         viewModel.newsList.observe(viewLifecycleOwner) { list ->
+            Log.d("NewsFragment", "Received list size: ${list.size}")
             adapter.updateNews(list)
-            swipe.isRefreshing = false
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            swipe.isRefreshing = loading
         }
     }
 }
+
